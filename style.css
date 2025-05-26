@@ -2,71 +2,70 @@ body {
     background-color:  #C0C0C0;
     color: #F7EBE8;
     font-family: Arial, sans-serif;
-    padding-left: 40px;
-    padding-top: 40px;
+    margin: 0;
 }
 
-h1 {
-    color: #FFFFFF;
-    background-color: #14213D;
-    display: inline;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-h2 {
-    color: #000000;
-    margin-bottom: 5px;
-}
 .container {
     display: flex;
+    gap: 2rem;
+    padding-top: 2rem;
+    padding-left: 2rem;
 }
 
 .leftside {
-    display:inline-block;
-    width: 421px;
+    flex: 0 0 23%;
 }
 
 .rightside{
+    flex: 1;
     background-color: #EBEBEB;
-    width: 100%;
-    margin-left: 50px;
-    margin-right: 50px;
-    border-radius: 10px;
+    border-radius: 0.625rem;
     overflow-y: auto;
     font-weight: bold;
 }
 
 .textbox {
-    width: 419px;
-    padding: 2px;
+    width: 100%;
+    padding: 0.5rem;
     border-radius: 10px;
-    font-size: 23px;
+    font-size: 1.13rem;
     font-weight: bold;
     background-color: #E5E5E5;
+    box-sizing: border-box;
+    margin-top: 0.9375rem;
 }
 
 .highlight {
-    border-radius: 5px;
-    padding: 0px 5px; 
+    border-radius: 0.3rem;
+    padding: 0 0.3rem; 
     color: #ffffff;   
 }
 
 .projectheader{
-    margin-top: 20px; 
-    margin-left: 40px;
+    margin-top: 1.5rem; 
+    margin-left: 2rem;
     text-align: left; 
-    font-size: 50px; 
+    font-size: 2.5rem; 
     color: #14213D;
 }
 
 .projectdesc{
-    margin-left: 43px;
-    font-size: 20px;
+    margin-left: 2.1rem;
+    font-size: 1.2rem;
     color: #000000;
+}
+
+.leftsideheader{
+    font-size: 1.7rem;
+    border-radius: 0.625rem;
+    padding: 0.625rem;
+    text-align: center;
+    background-color: #14213D;
+    color: #FFFFFF;
+    font-weight: bold;
 }
 
 p {
     color: #000000;
-    margin: 0px;
+    margin: 0;
 }
