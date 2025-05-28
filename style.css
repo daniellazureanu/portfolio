@@ -1,15 +1,15 @@
 body{
     display: flex;
     gap: 1.5rem;
-    background-color:  #C0C0C0;
-    font-family: Arial, sans-serif;
+    background-color:  #161718;
+    font-family: "Open Sans", sans-serif;
     padding-top: 15px;
     padding-left: 15px;
 }
-
+/*#161718*/
 .sidebar{
     height: 95vh;
-    width: 25%;
+    width: 28%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -21,9 +21,11 @@ body{
 
 #box-1{
     align-items: center;
-    font-size: clamp(1.3rem, 1.5vw, 2rem);
-    background-color: #14213D;
+    font-size: clamp(1.3rem, 1.6vw, 2rem);
+    background-color: #8E1616;
     color: #FFFFFF;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
 }
 
 .box{
@@ -34,23 +36,25 @@ body{
     flex: 1 1 auto;
     width: 100%;
     min-height: 0;
-    border-radius: 15px;
+    border-radius: 10px;
     box-sizing: border-box;
-    padding: 1.25rem;
-    font-weight: bold;
-    font-size: clamp(0.8rem, 1vw, 2rem);
-    background-color: #E5E5E5;
+    padding: 1rem;
+    font-size: clamp(0.8rem, 1.03vw, 2rem);
+    background-color: #303132;
+    color: #F2F2F2;
     overflow: hidden;
+    margin: 0;
 }
 
 .projectswindow{
-    background-color: #2A2B2E;
-    color: #E5E5E5;
+    background-color: #212224;
+    color: #F2F2F2;
     height: 95vh;
     width: 72vw;
     border-radius: 15px;
     padding-top: 2rem;
     padding-left: 3rem;
+    padding-right: 3rem;
     box-sizing: border-box;
     overflow-y: scroll;
     font-size: 2.1rem;
@@ -58,27 +62,25 @@ body{
 
 .projectswindow h1{
     margin: 0;
-    font-size: clamp(2rem, 3vw, 5rem);
+    font-size: clamp(2rem, 3.5vw, 5rem);
+    border-radius: 15px;
+    padding: 1rem;
+    background-color: #303132;
+    color: #EEEEEE;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
 }
 
 .projectswindow h2{
     margin: 0;
-    padding-left: 1rem;
+    padding-left: 0rem;
     font-size: clamp(1rem, 2vw, 4rem);
-}
-
-.projectswindow span {
-    border-radius: 15px;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    background-color: #FCA311;
-    color: #ffffff;
 }
 
 .projectswindow p{
     margin-top: 0;
     margin-bottom: 2rem;
-    padding-left: 1.2rem;
+    padding-left: 1.1rem;
     font-size: clamp(1rem, 1.2vw, 2rem);
 }
 
@@ -91,6 +93,10 @@ body{
     border: 0.1rem inset #E5E5E5;
 }
 
+.projectswindow a{
+
+}
+
 .highlight {
     border-radius: 0.3rem;
     padding: 0 0.3rem; 
@@ -98,12 +104,18 @@ body{
 }
 
 .highlight-link {
+    display: inline-block;
     text-decoration: none;
-    color: #B22222;
+    margin-left: 0.8rem;
+    border-radius: 10px;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    color: #d93434;
 }
 
 .highlight-link:hover {
-    color: #E5E5E5;
+    color: #F2F2F2;
+    background-color: #d93434;
 }
 
 
