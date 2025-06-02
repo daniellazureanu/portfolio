@@ -1,5 +1,5 @@
 *{
-
+/*  outline: solid 1px red;*/
   box-sizing: border-box;
 }
 body, html{
@@ -13,7 +13,7 @@ body, html{
   color: #ffffff;
 }
 
-.gamearea {
+.fishing-area {
   display: flex;
   flex-direction: row;
   height: 100%;
@@ -44,10 +44,47 @@ body, html{
   border-radius: 1rem;
 }
 
+#upgrade-button-1{
+  display: flex;
+  align-items: center;
+  height: 4rem;
+  background-color: #A86523;
+  border-radius: 15px;
+  gap: 1rem;
+  font-weight: bold;
+}
+
+#upgrade-button-1:hover{
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+
+#upgrade-button-1 img{
+  height: 100%;
+  border-radius: 15px;
+  padding: 5px;
+  background-color: #E9A319;
+  image-rendering: pixelated;
+}
+
+#upgrade-button-1 .price{
+  display: flex;
+  align-self: flex-end;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 40%;
+  border-radius:15px;
+  font-size: 2rem;
+  background-color: #e9a319;
+  font-weight: bold;
+}
+
 .fish{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
   background: #05A6F4;
   background: radial-gradient(circle, rgba(5, 166, 244, 1) 0%, rgba(41, 143, 194, 1) 50%, rgba(11, 109, 158, 1) 100%);
   height: 100%;
@@ -58,8 +95,9 @@ body, html{
 }
 
 .fish img{
-  align-self: center;
   width: 60%;
+  image-rendering: pixelated;
+  opacity: 0;
 }
 
 .fish img:hover{
@@ -67,25 +105,59 @@ body, html{
   transform: scale(1.01);
 }
 
-.fish h1{
-  text-align: center;
-}
-
-.fish h2{
-  text-align: center;
-  margin-bottom: 5px;
-}
-
 .fish p{
-  text-align: center;
-  margin: 0;
+  font-size: 1.3rem;
+  margin-top: 3rem;
+  margin-bottom: 0px;
+  opacity: 0;
 }
 
-.fish button{
-  align-self: flex-end;
+.fish .fish-action{
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
 }
 
-.buyfisherman{
+.fish-action2{
+  margin-top: 2rem;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: #022e59;
+  border-radius: 15px;
+  opacity: 0.8;
+}
+
+.fish #progressBar {
+  height: 30px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #eee;
+  accent-color: #50C878;
+  margin-top: 2rem;
+}
+
+.fish #progressBar::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 10px;
+}
+
+.fish #progressBar::-webkit-progress-value {
+  background-color: #50C878; /* Emerald green */
+  border-radius: 10px;
+}
+
+/* Firefox */
+.fish #progressBar::-moz-progress-bar {
+  background-color: #50C878;
+  border-radius: 10px;
+}
+
+.inventory{
   height: 100%;
   width: 34%;
   padding: 1rem;
@@ -94,12 +166,15 @@ body, html{
   font-size: 1.3rem;
 }
 
-.basicfisherman{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.inventory li{
+  list-style-type: none 
 }
 
+.upper-section{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 button {
   padding: 8px 16px;
   margin-left: 5px;

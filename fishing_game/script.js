@@ -1,54 +1,106 @@
-let fish = 0;
-let fishermans = 0;
-let fishPerSecond = 0;
-let fishingProgress = 0;
+document.addEventListener("DOMContentLoaded", function () {
+  const catchButton = document.querySelector(".fish button");
+  const progressBar = document.getElementById("progressBar");
+  const catchMessage = document.querySelector(".fish p");
+  const sellButton = document.getElementById("sellButton");
+  const inventoryList = document.getElementById("inventoryList");
+  const balanceDisplay = document.getElementById("balanceDisplay");
+  const fishImage = document.getElementById('fishImage');
+  const fishUpgradeButton = document.getElementById('upgrade-button-1');
 
-let fishermanCost = 1;
-const fishermanMultiplier = 1;
-const fishermanTime = 1000; //10 seconds
+  let inventory = {};
+  let balance = 0;
 
-let money = 0;
+  const fishValues = {
+    Anchovy: 5,
+    Clownfish: 10,
+    Crab: 8,
+    Pufferfish: 30,
+    Surgeonfish: 20
+  };
 
-function catchAFish(){
-  fish++;
-  document.getElementById("totalFish").innerHTML = fish;
-}
+  let duration = 5000;
 
-function fishermansCatchFish(){
-  fish = fish + (fishermans * fishermanMultiplier);
-  document.getElementById("totalFish").innerHTML = fish;
-  fishingProgress = 0;
-}
+  catchButton.addEventListener("click", () => {
+    catchMessage.style.opacity = 0;
+    fishImage.style.opacity = 0;
+    catchButton.disabled = true;
+    progressBar.value = 0;
 
-function buyFisherman(){
-  if(money >= fishermanCost){
-    money = Math.round((money - fishermanCost)*100)/100;
-    fishermans++;
-    fishermanCost = fishermanCost * 1.15;
-    fishermanCost = Math.round(fishermanCost*100)/100;
+    let interval = 30;
+    let elapsed = 0;
 
-    fishPerSecond = fishermans * fishermanMultiplier;
+    const timer = setInterval(() => {
+      elapsed += interval;
+      progressBar.value = (elapsed / duration) * 100;
 
-console.log("Bought! New money:", money, "New cost:", fishermanCost);
+      if (elapsed >= duration) {
+        clearInterval(timer);
+        progressBar.value = 0;
+        catchButton.disabled = false;
+        getRandomFish();
+      }
+    }, interval);
+  });
 
-    document.getElementById("totalMoney").innerHTML = money;
-    document.getElementById("totalFishermans").innerHTML = fishermans;
-    document.getElementById("fishPerSecond").innerHTML = fishPerSecond;
-    document.getElementById("fishermanCost").innerHTML = fishermanCost;
+  fishUpgradeButton.addEventListener("click", buyUpgrade1);
+
+  function getRandomFish() {
+    const fishTypes = Object.keys(fishValues);
+    const randomFish = fishTypes[Math.floor(Math.random() * fishTypes.length)];
+
+    if (inventory[randomFish]) {
+      inventory[randomFish]++;
+    } else {
+      inventory[randomFish] = 1;
     }
-}
 
-function sellFish(){
-  if(parseInt(fish/10, 10) * 10 >= 10){
-    let fishToSell = parseInt(fish/10, 10) * 10;
-    fish -= fishToSell;
-    money += (fishToSell / 10);
-    money = Math.round(money*100)/100;
-    document.getElementById("totalFish").innerHTML = fish;
-    document.getElementById("totalMoney").innerHTML = money;
+    updateInventoryDisplay();
+
+    catchMessage.innerHTML = `You've caught a ${randomFish}!`;
+    catchMessage.style.opacity = 1;
+
+    fishImage.src=`resources/${randomFish}.png`
+    fishImage.style.opacity = 1;
   }
-}
 
-window.setInterval(function(){
-  fishermansCatchFish();
-}, fishermanTime);
+  function updateInventoryDisplay() {
+    inventoryList.innerHTML = '';
+
+    for (let fish in inventory) {
+      const count = inventory[fish];
+      const listItem = document.createElement("li");
+      listItem.textContent = `${fish} x${count} ($${fishValues[fish] * count})`;
+      inventoryList.appendChild(listItem);
+    }
+  }
+
+  let bought=false;
+
+  function buyUpgrade1(){
+    if(bought==false && balance>=100){
+      bought=true;
+      duration = 3000;
+      fishUpgradeButton.style.opacity = 0.7;
+      fishUpgradeButton.style.cursor = unset;
+    }
+  }
+
+  sellButton.addEventListener("click", () => {
+
+    let total = 0;
+
+    for (let fish in inventory) {
+      total += (fishValues[fish] || 0) * inventory[fish];
+    }
+
+    balance += total;
+    balanceDisplay.textContent = balance;
+
+    inventory = {};
+    updateInventoryDisplay();
+
+    catchMessage.innerHTML = `You sold all your fish for $${total}!`;
+    catchMessage.style.opacity = 1;
+  });
+});

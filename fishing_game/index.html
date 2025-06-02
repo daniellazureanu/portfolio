@@ -8,23 +8,38 @@
 <body>
   <div class="gametitle">🐟 Fishing Incremental</div>
 
-  <div class="gamearea">
+  <div class="fishing-area">
+
     <div class="upgrades">
-      Upgrade 1
+      <div id="upgrade-button-1">
+        <img src="resources/Anchovy.png">
+        This upgrade reduces the time necessary for catching a fish
+        <div class="price">$100</div>
+      </div>
     </div>
 
     <div class="fish">
-      <h1>Money: $<span id="totalMoney">0</span></h1>
-      <img src="resources/fish4.gif" onclick="catchAFish()">
-      <h2>Fish: <span id="totalFish">0</span></h2>
-      <p>per second: <span id="fishPerSecond">0</span></p>
-      <button onclick="sellFish()">Sell Fish</button>
+      <progress id="progressBar" value="0" max="100" style="width: 80%;"></progress>
+      <p id="catchMessage" style="font-weight: bold;">this is the catch message</p>
+
+      <div class="fish-action">
+        <img id="fishImage" src="resources/Anchovy.png">
+        <button>Catch a fish!</button>
+      </div>
+
+      <div class="fish-action2">
+        Unlock at level 25
+      </div>
     </div>
 
-    <div class="buyfisherman">
-      <div class="basicfisherman">
-        Basic Fisherman | Cost: $<span id="fishermanCost">1</span>&nbsp| Level:&nbsp<span id="totalFishermans">0</span> <button onclick="buyFisherman()">Buy</button>
+    <div class="inventory">
+      <div class=upper-section>
+        <h3>Inventory</h3>
+        <p style="font-weight: bold;">Money: $<span id="balanceDisplay">0</span></p>
+        <button id="sellButton">Sell All Fish</button>
       </div>
+
+      <ul id="inventoryList"></ul>
     </div>
   </div>
 
