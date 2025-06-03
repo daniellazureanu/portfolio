@@ -6,23 +6,36 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="gametitle">🐟 Fishing Incremental</div>
+  <div class="gameheader">
+  Fishing Incremental 🐟
+  <a href=https://discord.gg/En6kYU25g2>Discord</a>
+  <a href=https://github.com/daniellazureanu>GitHub</a>
+  </div>
 
   <div class="fishing-area">
 
     <div class="upgrades">
-      <div id="upgrade-button-1">
-        <img src="resources/Anchovy.png">
-        This upgrade reduces the time necessary for catching a fish
-        <div class="price">$100</div>
+      <div id="upgrade-button-1" class="upgrade-button">
+          <img src="resources/Anchovy.png">
+          <p>This upgrade reduces the time necessary for catching a fish</p>
+          <div class="price">$50</div>
+      </div>
+
+      <div id="upgrade-button-2" class="upgrade-button">
+          <img src="resources/Surgeonfish.png">
+          <p>Unlock a new fish</p>
+          <div class="price">$150</div>
       </div>
     </div>
 
     <div class="fish">
-      <progress id="progressBar" value="0" max="100" style="width: 80%;"></progress>
-      <p id="catchMessage" style="font-weight: bold;">this is the catch message</p>
 
       <div class="fish-action">
+        <div class=location>
+          Location: Salt water
+        </div>
+        <progress id="progressBar" value="0" max="100" style="width: 80%;"></progress>
+        <p id="catchMessage" style="font-weight: bold;">this is the catch message</p>
         <img id="fishImage" src="resources/Anchovy.png">
         <button>Catch a fish!</button>
       </div>

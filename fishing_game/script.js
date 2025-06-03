@@ -6,7 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const inventoryList = document.getElementById("inventoryList");
   const balanceDisplay = document.getElementById("balanceDisplay");
   const fishImage = document.getElementById('fishImage');
-  const fishUpgradeButton = document.getElementById('upgrade-button-1');
+  const fishUpgradeButton1 = document.getElementById('upgrade-button-1');
+  const fishUpgradeButton2 = document.getElementById('upgrade-button-2');
+  const upgrade1Cost = 50;
+  const upgrade2Cost = 150;
 
   let inventory = {};
   let balance = 0;
@@ -15,8 +18,16 @@ document.addEventListener("DOMContentLoaded", function () {
     Anchovy: 5,
     Clownfish: 10,
     Crab: 8,
-    Pufferfish: 30,
-    Surgeonfish: 20
+    Pufferfish: 100,
+    Surgeonfish: 50
+  };
+
+  const fishWeights = {
+    Anchovy: 70,
+    Clownfish: 40,
+    Crab: 50,
+    Surgeonfish: 0,
+    Pufferfish: 0
   };
 
   let duration = 5000;
@@ -43,17 +54,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }, interval);
   });
 
-  fishUpgradeButton.addEventListener("click", buyUpgrade1);
+  fishUpgradeButton1.addEventListener("click", buyUpgrade1);
+  fishUpgradeButton2.addEventListener("click", buyUpgrade2);
 
   function getRandomFish() {
     const fishTypes = Object.keys(fishValues);
-    const randomFish = fishTypes[Math.floor(Math.random() * fishTypes.length)];
+    const weightedFish = [];
 
-    if (inventory[randomFish]) {
-      inventory[randomFish]++;
-    } else {
-      inventory[randomFish] = 1;
-    }
+    fishTypes.forEach(fish => {
+      for (let i = 0; i < fishWeights[fish]; i++) {
+        weightedFish.push(fish);
+      }
+    });
+
+    const randomFish = weightedFish[Math.floor(Math.random() * weightedFish.length)];
+
+    inventory[randomFish] = (inventory[randomFish] || 0) + 1;
 
     updateInventoryDisplay();
 
@@ -77,13 +93,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let bought=false;
 
-  function buyUpgrade1(){
-    if(bought==false && balance>=100){
+  function buyUpgrade2(){
+    if(bought==false && balance>=upgrade2Cost){
       bought=true;
-      duration = 3000;
-      fishUpgradeButton.style.opacity = 0.7;
-      fishUpgradeButton.style.cursor = unset;
+      balance-=upgrade2Cost;
+      balanceDisplay.textContent = balance;
+      fishWeights.Surgeonfish = 30;
+      
+      fishUpgradeButton2.remove();
+
+      catchMessage.innerHTML = `New fish unlocked: Surgeonfish`;
+      catchMessage.style.opacity = 1;
+
+      fishImage.src=`resources/Surgeonfish.png`
+      fishImage.style.opacity = 1;
+      bought=false;
     }
+  }
+
+  function buyUpgrade1(){
+    if(bought==false && balance>=upgrade1Cost){
+      bought=true;
+      balance-=upgrade1Cost;
+      balanceDisplay.textContent = balance;
+      duration = 3000;
+      
+      fishUpgradeButton1.remove();
+
+      catchMessage.innerHTML = `Upgrade purchased!`;
+      catchMessage.style.opacity = 1;
+      bought = false;
+    }
+  }
+
+  function saveProgress() {
+    localStorage.setItem("inventory", JSON.stringify(inventory));
+    localStorage.setItem("balance", balance.toString());
   }
 
   sellButton.addEventListener("click", () => {
